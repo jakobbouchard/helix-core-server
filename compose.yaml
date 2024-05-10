@@ -1,0 +1,20 @@
+services:
+  perforce:
+    image: jakobbouchard/helix-core-server:latest
+    ports:
+      - "1666:1666"
+    environment:
+      SSL_COUNTRY: CA
+      SSL_STATE: Quebec
+      SSL_LOCALITY: Montreal
+      SSL_ORGANIZATION: Organization
+      SSL_ORGANIZATIONAL_UNIT: DevOps
+      SSL_COMMON_NAME: localhost # must be a valid hostname
+      SSL_EXPIRY: 365 # days
+      P4ROOT: /opt/perforce/root
+      P4SSLDIR: /opt/perforce/ssl
+      P4JOURNAL: /opt/perforce/journals/journal
+      P4PORT: ssl:1666
+    volumes:
+      - ./data:/opt/perforce
+    restart: unless-stopped
