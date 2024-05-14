@@ -11,7 +11,7 @@ RUN useradd -ms /bin/bash perforce
 USER perforce
 
 # Create the perforce directories
-WORKDIR /app/perforce
+WORKDIR /app
 ADD scripts /app
 
 # Set the default perforce environment variables
