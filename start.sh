@@ -70,6 +70,9 @@ echo "0 0 * * 0 /usr/local/bin/p4d -jc $P4JOURNAL" >> ~/cron.txt
 cat ~/cron.txt
 crontab ~/cron.txt
 
+echo "Starting cron service..."
+service cron start
+
 echo
 echo "######################         SERVER INFO         ######################"
 echo
