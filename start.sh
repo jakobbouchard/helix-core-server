@@ -63,16 +63,6 @@ if [ $ALREADY_EXISTS -eq 0 ]; then
   p4d -xi
 fi
 
-# Setup crontab
-echo "Setting up crontab..."
-echo "0 0 * * 1-6 /usr/local/bin/p4d -jj -Z $P4JOURNAL" > ~/cron.txt
-echo "0 0 * * 0 /usr/local/bin/p4d -jc $P4JOURNAL" >> ~/cron.txt
-cat ~/cron.txt
-crontab ~/cron.txt
-
-echo "Starting cron service..."
-service cron start
-
 echo
 echo "######################         SERVER INFO         ######################"
 echo

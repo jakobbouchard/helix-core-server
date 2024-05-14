@@ -57,5 +57,14 @@ p4 user -f <username>
 
 Once that's done, login using [P4Admin](https://www.perforce.com/downloads/administration-tool) and enter your server URL (e.g. `ssl:localhost:1666` and your username. Once that's done, it will ask you if you want to be the sole super-user. Click **Yes**, then restart P4Admin, it should reconnect to the server and you'll see your server info and be able to manage it now.
 
+### Configuring a cron job
+
+I highly recommend setting up a cron job on your host OS that looks something like the following, so that your journals are rotated and checkpointed.
+
+```
+0 0 * * 1-6 docker exec perforce /usr/local/bin/p4d -jj -Z $P4JOURNAL
+0 0 * * 0 docker exec perforce /usr/local/bin/p4d -jc $P4JOURNAL
+```
+
 ## DO NOT UPGRADE THE SERVER IN-PLACE EVER
 Please follow the [Perforce instructions](https://www.perforce.com/manuals/p4sag/Content/P4SAG/chapter.upgrade.html) and then start the container. I am not responsible for any loss of data that may occur, and you should **always** have proper backups.
