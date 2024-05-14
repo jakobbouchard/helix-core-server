@@ -11,14 +11,14 @@ RUN useradd -ms /bin/bash perforce
 USER perforce
 
 # Create the perforce directories
-WORKDIR /opt/perforce
-COPY start.sh /start.sh
+WORKDIR /app/perforce
+ADD scripts /app
 
 # Set the default perforce environment variables
 ENV P4PORT=1666
-ENV P4ROOT=/opt/perforce/root
-ENV P4JOURNAL=/opt/perforce/journals/journal
-ENV P4SSLDIR=/opt/perforce/ssl
+ENV P4ROOT=/app/perforce/root
+ENV P4JOURNAL=/app/perforce/journals/journal
+ENV P4SSLDIR=/app/perforce/ssl
 
 # Start the perforce server
-ENTRYPOINT ["bash", "/start.sh"]
+ENTRYPOINT ["bash", "/app/start.sh"]

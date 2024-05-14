@@ -62,8 +62,8 @@ Once that's done, login using [P4Admin](https://www.perforce.com/downloads/admin
 I highly recommend setting up a cron job on your host OS that looks something like the following, so that your journals are rotated and checkpointed.
 
 ```
-0 0 * * 1-6 docker exec perforce /usr/local/bin/p4d -jj -Z $P4JOURNAL
-0 0 * * 0 docker exec perforce /usr/local/bin/p4d -jc $P4JOURNAL
+0 0 * * 1-6 docker exec perforce bash /app/rotate-journal.sh
+0 0 * * 0   docker exec perforce bash /app/checkpoint-journal.sh
 ```
 
 ## DO NOT UPGRADE THE SERVER IN-PLACE EVER
